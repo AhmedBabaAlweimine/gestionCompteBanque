@@ -13,7 +13,7 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codeClient;
     private Long test;  //this for only test git
-    private String ahmed ; //this only for git test
+    private String ahmed ; //this only for git
     private String nomClient;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
