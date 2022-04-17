@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myBanqueApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Banque</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/myStyle.css"/>
+
+    <script src="angular/angular.min.js"></script>
+    <script src="angular/angular-resource.min.js"></script>
+
+    <script type="application/javascript" src="js/myApp.js"></script>
+</head>
+<body  ng-controller="myBanqueController">
+<div class="col-md-6 col-sm-12 col-xs-12">
+<div class="panel panel-info  spacer">
+    <div class="panel-heading">Compte</div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <label>Code Compte</label>
+                <input type="text" ng-model="codeCompte">
+                <button class="btn btn-default" ng-click="chargerCompte()">Charger</button>
+            </div>
+        </form>
+    </div>
+    <div class="container error" ng-show="errorMessage">
+        {{errorMessage}}
+    </div>
+</div>
+
+</div>
+<div ng-if="compte">
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info  spacer">
+            <div class="panel-heading">Etat du Compte</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Solde:</label>
+                    <label>{{compte.solde}}</label>
+                </div>
+                <div class="form-group">
+                    <label>Date creation:</label>
+                    <label>{{compte.dateCreation | date:'yyyy/MM/dd'}}</label>
+                </div>
+
+                <div ng-if="compte.taux" class="form-group" >
+                    <label>Taux:</label>
+                    <label>{{compte.taux}}</label>
+                </div>
+
+                <div ng-if="compte.decouvert" class="form-group" >
+                    <label>Découvert:</label>
+                    <label>{{compte.decouvert}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-6 col-sm-12 col-xs-12" ng-if="compte">
+    <div class="panel panel-info  spacer">
+        <div class="panel-heading">Operations</div>
+        <div class="panel-body">
+            <form>
+                <div class="form-group">
+                    <label>Versement</label>
+                    <input type="radio" ng-model="operation.type" value="versement"/>
+                    <label>Retrait</label>
+                    <input type="radio" ng-model="operation.type" value="retrait"/>
+                    <label>virement</label>
+                    <input type="radio" ng-model="operation.type" value="virement"/>
+                </div>
+                <div class="form-group">
+                    <span>
+                     <label>Montant:</label>
+                    <input type="text" ng-model="operation.montanat" size="10"/>
+                    </span>
+
+                    <span ng-show="operation.type==='virement'">
+                     <label>Vers le compte:</label>
+                    <input type="text" ng-model="operation.copmteDest" size="10"/>
+                    </span>
+
+                </div>
+                <button class="btn btn-primary" data-ng-click="effectuerOperation()">Effectuer</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-sm-12 col-xs-12" ng-if="compte">
+    <div class="panel panel-info  spacer">
+        <div class="panel-heading">Liste des Operations</div>
+        <div class="panel-body">
+             <table class="table table-striped">
+             <thead>
+             <tr>
+                 <th>Num</th> <th>Date</th> <th>Montant</th> <th>Type</th>
+             </tr>
+             </thead>
+                 <tbody>
+                 <tr ng-repeat="operation in listeOperation">
+                    <td>{{operation.numeroOperation}}</td>
+                     <td>{{operation.dateOperation | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+                     <td>{{operation.montanat}}</td>
+                     <td>{{operation.type}}</td>
+
+                 </tr>
+                 </tbody>
+             </table>
+        </div>
+        <div class="container spacer">
+            <ul class="nav nav-pills">
+                <li class="clickable" ng-class="{active:$index===pageCourante}" ng-repeat="p in pages track by $index">
+                    <a ng-click="ChangePage($index)">{{$index}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
