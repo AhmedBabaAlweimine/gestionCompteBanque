@@ -12,7 +12,10 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codeClient;
+    private Long test;  //this for only test git
+    private String ahmed ; //this only for git
     private String nomClient;
+
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Collection<Compte> comptes;
 
@@ -49,7 +52,4 @@ public class Client implements Serializable {
     public void setComptes(Collection<Compte> comptes) {
         this.comptes = comptes;
     }
-    //this section is for git practice
-    private Long test;  //c'est pour git learning
-    private String ahmed ;
 }
