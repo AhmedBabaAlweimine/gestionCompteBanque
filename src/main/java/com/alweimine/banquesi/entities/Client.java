@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-/*this class is for  all cilent*/
+/*this class is for every cilent*/
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,13 +23,6 @@ public class Client implements Serializable {
     public Client() {
         super();
     }
-    public String getNomClient() {
-        return nomClient;
-    }
-
-    public void setNomClient(String nomClient) {
-        this.nomClient = nomClient;
-    }
 
     public Long getCodeClient() {
         return codeClient;
@@ -43,6 +36,14 @@ public class Client implements Serializable {
     @JsonIgnore
     public Collection<Compte> getComptes() {
         return comptes;
+    }
+
+    public String getNomClient() {
+        return nomClient;
+    }
+
+    public void setNomClient(String nomClient) {
+        this.nomClient = nomClient;
     }
 
     public void setComptes(Collection<Compte> comptes) {
