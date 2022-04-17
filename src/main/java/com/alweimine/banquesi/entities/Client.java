@@ -13,6 +13,7 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codeClient;
     private String nomClient;
+    private String ahmed ;
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Collection<Compte> comptes;
 
