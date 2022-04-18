@@ -13,8 +13,8 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codeClient;
 
-    private Long walo;  //this for only walo git
-  //ignore thiis pleaqse
+    private Long Conflitwalo;  //this for only confliwalo git
+    //ignore thiis  for producing conflit pleaqse
     private String nomClient;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
