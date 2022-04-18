@@ -7,7 +7,9 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-/*this class is for every cilent*/
+/*this class is for every cilent
+author : ahmed 
+*/
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
