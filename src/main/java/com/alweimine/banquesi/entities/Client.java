@@ -11,14 +11,11 @@ import java.util.Collection;
 author : ahmed 
 */
 public class Client implements Serializable {
+    //pour generate Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codeClient;
-
-    private Long Conflitwalo;  //this for only confliwalo git
-    //ignore thiis  for producing conflit pleaqse
     private String nomClient;
-
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Collection<Compte> comptes;
 
